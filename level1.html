@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #top_div {
+            margin-left: 550px;
+        }
+
+        .shuru {
+            width: 650px;
+            height: 60px;
+            font-size: 25px;
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(57, 133, 219);
+        }
+
+        p {
+            color: rgb(131, 127, 127);
+        }
+
+        .weibo {
+            height: 25px;
+            background-image: url(weibo.png);
+            background-repeat: no-repeat;
+            background-position: left center;
+            text-indent: 2.5em;
+        }
+
+        .qq {
+            height: 25px;
+            background-image: url(qq.png);
+            background-repeat: no-repeat;
+            background-position: left center;
+            text-indent: 2.5em;
+        }
+
+        .join_in {
+            color: grey;
+            font-size: 25px;
+            text-align: left;
+        }
+
+        .join_in:hover {
+            color: skyblue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="top_div">
+        <form>
+            <table cellspacing=20px>
+                <tr>
+                    <td><a href="#" class="join_in">密码登录</a></td>
+                    <td><a href="#" class="join_in">短信登录</a></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td><input type=" text" placeholder="你的手机号/邮箱" class="shuru"></td>
+                </tr>
+                <tr>
+                    <td><input type="password" placeholder="密码" class="shuru"></td>
+                </tr>
+            </table>
+            <div>
+                <table>
+                    <tr>
+                        <td><input type="checkbox" checked="checked" class="away"></td>
+                        <td>记住我</td>
+                        <td>
+                            <p>不是自己得电脑上不要勾选此项</p>
+                        </td>
+                        <td class="check_forget"><a href="#">无法验证？</a></td>
+                        <td class="check_forget"><a href="#">忘记密码？</a></td>
+                    </tr>
+                </table>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <input type="submit" value="登录"
+                            style="width: 300px; height: 70px; background-color: rgb(57, 133, 219); border-style: solid;font-size: 25px;color: white;">
+                        <input type="submit" value="注册"
+                            style="width: 300px; height: 70px; background-color: white; border-style:solid;font-size: 25px;color: black;margin-left: 50px;">
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <div class="weibo">微博账号登录</div>
+                    </td>
+                    <td>
+                        <div class="qq">QQ账号登录</div>
+                    </td>
+                    <!-- <td><a href="#"><img src="B:\my_desk\前端\example\image\weibo.png" class="image"></a>微博账号登录</td> -->
+                    <!-- <td><a href="#"><img src="B:\my_desk\前端\example\image\QQ.png" class="image"></a>QQ账号登录</td> -->
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>
