@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档一</title>
+    <script>
+
+        window.onload = function () {
+            let inner = document.querySelector('#button');
+            inner.onclick = function () {
+                let get_content = document.querySelector('#get_number');
+                let out_content = document.querySelector('#out_number');
+                var arr = get_content.value;
+                // out_content.value = get_content.value.sort();
+                // 去重
+                var arr1 = [];
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr1.indexOf(arr[i]) == -1) {
+                        arr1.push(arr[i]);
+                    }
+                }
+                // 排序
+                var temp;
+                for (var i = 0; i < arr1.length; i++) {
+                    for (var j = 0; j < arr1.length; j++) {
+                        if (arr1[j] > arr1[j + 1]) {
+                            temp = arr1[j];
+                            arr1[j] = arr1[j + 1];
+                            arr1[j + 1] = temp;
+                        }
+                    }
+                }
+
+                out_content.value = arr1;
+
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <p>请输入一组数字：</p>
+    <input type="text" id="get_number">
+    <input type="submit" value="求解" id="button">
+    <input type="text" name="" id="out_number">
+</body>
+
+</html>
