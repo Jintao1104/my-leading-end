@@ -5,7 +5,7 @@ function delayering(a) {
         function v(item) {
             function c(item) {
                 if (Array.isArray(item)) {
-                    b = b.concat(arr1(item))
+                    b = b.concat(delayering(item))
                 }
                 else {
                     b.push(item)
