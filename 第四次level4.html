@@ -1,0 +1,66 @@
+< !DOCTYPE html >
+    <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Document</title>
+
+                        <script>
+                            var data = {
+                                age: 18,
+            name: "liuruchao",
+            education: ["小学", "初中", "高中", "大学", undefined, null],
+            likesFood: new Set(["fish", "banana"]),
+            friends: [
+                {name: "summer", sex: "woman" },
+                {name: "daWen", sex: "woman" },
+                {name: "yang", sex: "man" }],
+            work: {
+                                time: "2019",
+                project: {name: "test", obtain: ["css", "html", "js"] }
+            },
+            play: function () {console.log("玩滑板"); }
+        }
+        function deepClone(object, cloneObj) {
+            for (var i in object) {
+
+                if (typeof object[i] === 'object') {
+                    if (object[i] instanceof Array) {
+                                cloneObj[i] = [];
+                        deepClone(object[i], cloneObj[i]);
+                    }
+                    else if (object[i] instanceof Set) {
+                                //    cloneObj[i] = [];
+                                cloneObj[i] = object[i];
+                    }
+                    else if (object[i] === null) {
+                                cloneObj[i] = object[i];
+                    }
+                    else if (object[i].constructor === RegExp) {
+                                cloneObj[i] = object[i];
+                    }
+                    else {
+                                cloneObj[i] = {};
+                        deepClone(object[i], cloneObj[i]);
+                    }
+                }
+                else {
+                                cloneObj[i] = object[i];
+                }
+            }
+            return cloneObj;
+        }
+        var cloneData = { };
+        deepClone(data, cloneData);
+        console.log(cloneData);
+
+    </script>
+</head>
+
+                    <body>
+
+                    </body>
+
+</html>
