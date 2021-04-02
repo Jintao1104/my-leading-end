@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outer {
+            width: 300px;
+            height: 500px;
+            margin: 10px auto;
+            background-image: url('001.jpg');
+        }
+
+        .outer .h3 {
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        textarea {
+            margin-top: 5px;
+            resize: none;
+            font-family: '微软雅黑';
+            font-size: 14px;
+            background: transparent;
+            color: white;
+        }
+
+        .outer .inner .get_data {
+            float: left;
+            width: 255px;
+            height: 25px;
+            background: transparent;
+            color: white;
+        }
+
+        #button {
+            float: left;
+            border-radius: 3px;
+            background: transparent;
+            color: white;
+            height: 29px;
+            width: 40px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var sub = document.querySelector('#button');
+            let i = 0;
+            sub.onclick = function () {
+                var content_key = document.querySelector('#text');
+                var content = content_key.value;
+                var textarea = document.querySelector('#textarea');
+                textarea.value = Number(i + 1) + "的留言为" + content + "\n" + textarea.value;
+                content_key.value = '';
+                i++;
+
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="outer">
+        <h3 align='center'>留言</h3>
+        <textarea name="" id="textarea" cols="40" rows="20"></textarea>
+        <div class="inner">
+            <input type="text" name="" id="text" class="get_data" placeholder="请输入留言">
+            <button id="button" class="button">提交</button>
+        </div>
+    </div>
+</body>
+
+</html>
