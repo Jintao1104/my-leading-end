@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入jQuery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <!-- 网页图标 -->
+    <link rel="icon" href="https://img.alicdn.com/tfs/TB1XlF3RpXXXXc6XXXXXXXXXXXX-16-16.png">
+
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2752917_86kn7vurbgq.css">
+
+    <title>天猫超市-理想生活上天猫</title>
+    <!-- 清除默认样式 -->
+    <link rel="stylesheet" href="清除CSS默认样式（对默认样式进行统一）.css">
+    <!-- 自己的css -->
+    <link rel="stylesheet" href="修改.css">
+
+    <!-- 引入element ui  for slideshow -->
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+</head>
+
+<body>
+    <div class="all-wrap clearfix">
+        <!-- 1、title-line -->
+        <div class="title-line clearfix">
+            <a
+                href="https://pages.tmall.com/wow/an/cs/act/wupr?spm=a3204.7084713.1998122057.1.cobbPS&wh_biz=tm&wh_pid=act%2F17abe059aed&disableNav=YES"><img
+                    class="title_img" src="./image/广告栏.jpg" alt=""></a>
+        </div>
+
+
+        <!-- 2、site-nav -->
+        <div class="site-nav-wrap clearfix">
+            <div class="site-nav">
+                <div class="site-nav-left">
+                    <p>
+                        <i class="iconfont icon-fangzi"></i>
+                        <a href="">天猫首页</a>
+                    </p>
+
+                    <p>
+                        喵,欢迎来到天猫
+                        <a href="">请登录</a>
+                        <a href="">免费注册</a>
+                    </p>
+                </div>
+                <div class="site-nav-right">
+                    <ul>
+                        <li @mouseenter="wdtb_changeshow" @mousemove="wdtb_t_changeshow" @mouseout="wdtb_changeshow"
+                            class="jianjiao">
+                            <a href="">我的淘宝</a><b></b>
+                            <div v-show="wdtb_isShow">
+                                <a href="">已买到的宝贝</a>
+                                <a href="">已卖出的宝贝</a>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="iconfont icon-gouwuche"></i><a href="">购物车</a>
+                        </li>
+                        <li @mouseenter="scj_changeshow" @mousemove="scj_t_changeshow" @mouseout="scj_changeshow"
+                            class="jianjiao">
+                            <a href="">收藏夹</a><b></b>
+                            <div v-show="scj_isShow">
+                                <a href="">收藏的店铺</a>
+                                <a href="">收藏的宝贝</a>
+                            </div>
+                        </li>
+                        |
+                        <li @mouseenter="sjb_changeshow" @mousemove="sjb_t_changeshow" @mouseout="sjb_changeshow">
+                            <i class="iconfont icon-shouji1"></i><a href="" title="天猫无线">手机版</a>
+                            <div class="download" v-show="sjb_isShow">
+                                <div class="sanjiao"></div>
+                                <img src="https://gw.alicdn.com/imgextra/i1/O1CN01p7gvna1wNcJUZjbyI_!!6000000006296-2-tps-175-175.png"
+                                    alt="">
+                                <img src="https://img.alicdn.com/tfs/TB1W.19bG67gK0jSZFHXXa9jVXa-145-30.jpg" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">淘宝网</a>
+                        </li>
+                        <li @mouseenter="sjzc_changeshow" @mousemove="sjzc_t_changeshow" @mouseout="sjzc_changeshow"
+                            class="jianjiao">
+                            <a href="">商家支持</a><b></b>
+                            <div v-show="sjzc_isShow">
+                                <ul>
+                                    <li>
+                                        <strong>商家：</strong><br>
+                                        <a target="_top" href="//mai.taobao.com/">商家中心</a>
+                                        <a class="sitemap-right" target="_top"
+                                            href="//guize.tmall.com/?acm=lb-tms-1104633-90536.1003.4.268545&amp;scm=1003.4.lb-tms-1104633-90536.OTHER_6_268545">天猫规则</a>
+                                        <a class="sitemap-right" target="_top"
+                                            href="//zhaoshang.tmall.com/?acm=lb-tms-1104633-90536.1003.4.268545&amp;scm=1003.4.lb-tms-1104633-90536.OTHER_2_268545">商家入驻</a>
+                                        <a target="_top"
+                                            href="//fw.tmall.com/?acm=lb-tms-1104633-90536.1003.4.268545&amp;scm=1003.4.lb-tms-1104633-90536.OTHER_3_268545">运营服务</a>
+                                        <a class="sitemap-right" target="_top"
+                                            href="//www.tmall.com/wow/seller/act/tmallpinkong">商家品控</a> <a target="_top"
+                                            href="//fuwu.tmall.com/?acm=lb-tms-1104633-90536.1003.4.268545&amp;scm=1003.4.lb-tms-1104633-90536.OTHER_5_268545">商家工具</a>
+                                        <a target="_top" href="//zhiku.tmall.com">天猫智库</a>
+                                        <a class="sitemap-right" target="_top"
+                                            href="//maowo.tmall.com/?acm=lb-tms-1104633-90536.1003.4.268545&amp;scm=1003.4.lb-tms-1104633-90536.OTHER_8_268545">喵言喵语</a>
+                                    </li>
+                                    <li>
+                                        <strong>帮助：</strong><br>
+                                        <a target="_top" href="//helpcenter.tmall.com/index?from=high">商家服务大厅</a>
+
+                                        <a target="_top" href="//infob.taobao.com/help">问商友</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li @mouseenter="wzdh_changeshow" @mousemove="wzdh_t_changeshow" @mouseout="wzdh_changeshow"
+                            class="jianjiao">
+                            <i class="iconfont icon-table"></i>
+                            网站导航<b></b>
+                            <div class="webGuide" v-show="wzdh_isShow">
+                                <div class="site-cont site-hot">
+                                    <strong>热点推荐<span>Hot</span></strong><br>
+                                    <ul class="site-list">
+                                        <li>
+                                            <a
+                                                href="//chaoshi.tmall.com?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_1_247689">天猫超市</a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//miao.tmall.com?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_2_247689">喵鲜生</a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//new3c.tmall.com/?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_3_247689">科技新品<i
+                                                    class="sn-sitemap-icon sn-sitemap-icon-new"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//www.tmall.com/wow/fushi/act/nvzhuangnew?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_4_247689">女装新品<i
+                                                    class="sn-sitemap-icon  sn-sitemap-icon-hot "></i> </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//ku.tmall.com?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_5_247689">酷玩街</a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//www.tmall.com/wow/fushi/act/neiyinew?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_6_247689">内衣新品<i
+                                                    class="sn-sitemap-icon  sn-sitemap-icon-hot "></i> </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//mei.tmall.com/shiyong.htm?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_7_247689">试美妆</a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//www.tmall.com/wow/fushi/act/sportsnew?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_8_247689">运动新品</a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//www.tmall.com/wow/fushi/act/nanzhuangnew?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_9_247689">时尚先生<i
+                                                    class="sn-sitemap-icon  sn-sitemap-icon-hot "></i> </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//baby.tmall.com?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_11_247689">精明妈咪</a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//chi.tmall.com/?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_12_247689">吃乐会<i
+                                                    class="sn-sitemap-icon sn-sitemap-icon-new"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//b.tmall.com/?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_13_247689">企业采购</a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//vip.tmall.com/vip/index.htm?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_14_247689">会员积分</a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//www.tmall.hk/?acm=lb-tms-1289015-81300.1003.4.247689&amp;scm=1003.4.lb-tms-1289015-81300.OTHER_15_247689">天猫国际</a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="//pages.tmall.com/wow/seller/act/ebusiness2?spm=a223k.7780452.7195644330.3&amp;acm=lb-zebra-18822-2134013.1003.4.1914591&amp;scm=1003.4.lb-zebra-18822-2134013.OTHER_14975441556961_1914591#tab=%E6%B5%99%E6%B1%9F%E5%88%B6%E9%80%A0&amp;sub=%E6%B5%99%E6%B1%9F%E5%88%B6%E9%80%A0">品质频道</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="site-cont site-market">
+                                    <strong>行业市场<span>Market</span></strong><br>
+                                    <ul class="site-list">
+                                        <li><a href="//mei.tmall.com">美妆</a></li>
+                                        <li><a href="//3c.tmall.com">电器</a></li>
+                                        <li><a href="//nvzhuang.tmall.com">女装<i
+                                                    class="sn-sitemap-icon  sn-sitemap-icon-hot "></i> </a></li>
+                                        <li><a href="//nanzhuang.tmall.com">男装<i
+                                                    class="sn-sitemap-icon  sn-sitemap-icon-hot "></i> </a></li>
+                                        <li><a href="//nvxie.tmall.com">女鞋</a></li>
+                                        <li><a href="//nanxie.tmall.com">男鞋</a></li>
+                                        <li><a href="//neiyi.tmall.com">内衣<i
+                                                    class="sn-sitemap-icon  sn-sitemap-icon-hot "></i> </a></li>
+                                        <li><a href="//bag.tmall.com">箱包</a></li>
+                                        <li><a href="//sports.tmall.com">运动</a></li>
+                                        <li><a href="//baby.tmall.com">母婴</a></li>
+                                        <li><a href="//jia.tmall.com">家装</a></li>
+                                        <li><a href="//yao.tmall.com">医药</a></li>
+                                        <li><a href="//food.tmall.com">食品</a></li>
+                                        <li><a href="//dai.tmall.com/">配饰<i
+                                                    class="sn-sitemap-icon sn-sitemap-icon-new"></i></a></li>
+                                        <li><a href="//car.tmall.com/">汽车</a></li>
+                                    </ul>
+                                </div>
+                                <div class="site-cont site-help">
+                                    <strong>服务指南<span>Help</span></strong><br>
+                                    <ul class="site-list">
+                                        <li>
+                                            <a href="//consumerservice.tmall.com/online-help">帮助中心 </a>
+                                        </li>
+                                        <li><a href="//www.tmall.com/wow/seller/act/pinkong">品质保障 </a></li>
+                                        <li><a href="//www.tmall.com/wow/seller/act/special-service">特色服务 </a></li>
+                                        <li><a href="//www.tmall.com/wow/seller/act/seven-day">7天退换货 </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 3、search-line -->
+        <div class="search-line-wrap clearfix">
+            <div class="search-line">
+                <span class="tianmao-logo"><a href="//chaoshi.tmall.com?notjump=true&amp;_ig=logo"
+                        title="天猫超市-chaoshi.tmall.com"><img
+                            src="https://gw.alicdn.com/tfs/TB1OpaTmUz1gK0jSZLeXXb9kVXa-666-243.png" alt=""></a></span>
+                <div class="city">
+                    重庆<i class="iconfont icon-a-LeftArrow-copy"></i>
+                </div>
+                <div class="search" id="search-frame">
+                    <input type="text" placeholder="搜索天猫超市商品" @input="request" v-model="key">
+                    <button @click='request'>搜索</button>
+                    <ul>
+                        <li v-for="point in NODE"><a href="">{{point}}</a></li>
+                    </ul>
+                </div>
+                <div class="web-feature clearfix">
+                    <a href=""><i class="iconfont icon-serviceyizhanshigouqi"></i><strong>一站式购齐</strong></a>
+                    <a href=""><i class="iconfont icon-baoyou"></i><strong>满88包邮</strong></a>
+                    <a href="https://pages.tmall.com/wow/chaoshi/act/paper-list?spm=a3204.7084713.a2226n0.4.WvRmxv"
+                        data-spm-anchor-id="a3204.7084713.a2226n0.4" class="huizhang"><img
+                            src="https://img.alicdn.com/tps/i1/TB1L25iFFXXXXXcbpXXgBrbGpXX-36-36.png"></a>
+                    <a href="https://pages.tmall.com/wow/chaoshi/act/tmcsztbggs?spm=a3204.7084713.a2226n0.5.WvRmxv"
+                        data-spm-anchor-id="a3204.7084713.a2226n0.5" class="bian"><img
+                            src="https://img.alicdn.com/tfs/TB1fc6SdKuSBuNjy1XcXXcYjFXa-36-36.png"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4、all-class -->
+        <div class="all-class-wrap clearfix">
+            <div class="all-class">
+                <div class="syfl">所有产品分类</div>
+                <div class="sy"><a href="">首页</a></div>
+                <div class="fenge">|</div>
+                <div class="qycg"><a href="">企业采购</a></div>
+                <div class="gwc">
+                    <span><i class="iconfont icon-gouwuche1"></i></span>
+                    <a href="">
+                        <div>
+                            <span class="price">￥0.00</span>
+                            <span style="font-size: 12px;height: 36px;line-height: 36px;">元</span>
+                            <span class="weight">0kg</span>
+                            <span class="jianjiao"><b></b></span>
+                        </div>
+                    </a>
+                    <div class="gwc-list clearfix">
+                        <ul>
+                            <li>商品</li>
+                            <li>数量</li>
+                            <li>价格</li>
+                            <li>删除</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5、category-wrap -->
+        <div class="category-wrap clearfix">
+            <div class="category-box">
+                <div class="category">
+                    <ul class="category-name">
+                        <li class="tt">
+                            <div class="white"><i class="iconfont icon-feiji"></i>
+                                <h3>进口食品</h3><i class="iconfont icon-a-LeftArrow-copy1 iconfont2"></i>
+                            </div>
+                            <ul class="goods">
+                                <li><a href="">牛奶</a></li>
+                                <li><a href="">零食</a></li>
+                                <li><a href="">饼干</a></li>
+                                <li><a href="">方便面</a></li>
+                                <li><a href="">粮油</a></li>
+                            </ul>
+                            <div class="out-box">
+                                <ul>
+                                    <li class="out-box-li">
+                                        <h3>进口牛奶</h3>
+                                        <ul>
+                                            <li><a href="">进口纯牛奶</a></li>
+                                            <li><a href="">进口酸奶</a></li>
+                                            <li><a href="">进口成人奶粉</a></li>
+                                            <li><a href="">进口含乳饮料</a></li>
+                                            <li><a href="">进口有机牛奶</a></li>
+                                            <li><a href="">进口酸奶粉</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口零食</h3>
+                                        <ul>
+                                            <li><a href="">进口蜜饯果干</a></li>
+                                            <li><a href="">进口薯片/膨化</a></li>
+                                            <li><a href="">进口坚果</a></li>
+                                            <li><a href="">进口糖果</a></li>
+                                            <li><a href="">进口布丁果冻</a></li>
+                                            <li><a href="">进口海产品</a></li>
+                                            <li><a href="">进口肉干</a></li>
+                                            <li><a href="">进口巧克力</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口酒饮</h3>
+                                        <ul>
+                                            <li><a href="">进口葡萄酒</a></li>
+                                            <li><a href="">进口啤酒</a></li>
+                                            <li><a href="">进口起泡酒</a></li>
+                                            <li><a href="">进口洋酒</a></li>
+                                            <li><a href="">进口果汁</a></li>
+                                            <li><a href="">进口水</a></li>
+                                            <li><a href="">进口咖啡饮料</a></li>
+                                            <li><a href="">进口碳酸饮料</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口粮食/素食/调料</h3>
+                                        <ul>
+                                            <li><a href="">进口橄榄油</a></li>
+                                            <li><a href="">进口其它油</a></li>
+                                            <li><a href="">进口大米</a></li>
+                                            <li><a href="">进口方便面</a></li>
+                                            <li><a href="">进口意面</a></li>
+                                            <li><a href="">其它素食</a></li>
+                                            <li><a href="">进口罐头</a></li>
+                                            <li><a href="">进口调味料</a></li>
+                                            <li><a href="">进口调味酱</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口母婴用品</h3>
+                                        <ul>
+                                            <li><a href="">进口纸尿裤</a></li>
+                                            <li><a href="">进口母婴洗护</a></li>
+                                            <li><a href="">进口婴儿奶粉</a></li>
+                                            <li><a href="">进口辅食</a></li>
+                                            <li><a href="">进口婴幼儿营养品</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口冲调保健</h3>
+                                        <ul>
+                                            <li><a href="">进口咖啡</a></li>
+                                            <li><a href="">进口茶/蜂蜜</a></li>
+                                            <li><a href="">进口谷物冲饮</a></li>
+                                            <li><a href="">进口奶茶</a></li>
+                                            <li><a href="">进口茶叶</a></li>
+                                            <li><a href="">进口保健品</a></li>
+                                            <li><a href="">进口维生素</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口厨房用品</h3>
+                                        <ul>
+                                            <li><a href="">进口餐具水杯</a></li>
+                                            <li><a href="">进口厨具/锅具</a></li>
+                                            <li><a href="">进口一次性用品</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口饼干/糕点</h3>
+                                        <ul>
+                                            <li><a href="">进口饼干</a></li>
+                                            <li><a href="">进口糕点</a></li>
+                                            <li><a href="">进口面包干</a></li>
+                                            <li><a href="">进口威化</a></li>
+                                            <li><a href="">进口苏打饼干</a></li>
+                                            <li><a href="">进口曲奇</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口个人护理</h3>
+                                        <ul>
+                                            <li><a href="">进口洗发水</a></li>
+                                            <li><a href="">进口护发</a></li>
+                                            <li><a href="">进口沐浴</a></li>
+                                            <li><a href="">进口私处洗液</a></li>
+                                            <li><a href="">进口牙具</a></li>
+                                            <li><a href="">进口牙刷</a></li>
+                                            <li><a href="">进口漱口水</a></li>
+                                            <li><a href="">进口面部护理</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="edge-box">
+                                    <div class="pp">
+                                        <h3>品牌</h3>
+                                        <a href="">安家牛奶</a>
+                                        <a href="">中原G7</a>
+                                        <a href="">家乐氏</a>
+                                        <a href="">巴黎水</a>
+                                        <a href="">汤姆农场</a>
+                                        <a href="">小老板</a>
+                                    </div>
+                                    <div class="pphd">
+                                        <h3>品牌活动</h3>
+                                        <a href="">德亚牛奶</a>
+                                        <a href="">进口谷物冲饮</a>
+                                    </div>
+
+                                    <a href=""><img
+                                            src="https://img.alicdn.com/tfs/TB1lyxzSXXXXXaPapXXXXXXXXXX-196-90.jpg"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="tt">
+                            <div class="white"><i class="iconfont icon-yinliao"></i>
+                                <h3>食品饮料</h3><i class="iconfont icon-a-LeftArrow-copy1 iconfont2"></i>
+                            </div>
+                            <ul class="goods">
+                                <li><a href="">牛奶</a></li>
+                                <li><a href="">坚果</a></li>
+                                <li><a href="">饼干</a></li>
+                                <li><a href="">方便面</a></li>
+                                <li><a href="">粮油</a></li>
+                            </ul>
+                            <div class="out-box">
+                                <ul>
+                                    <li class="out-box-li">
+                                        <h3>糖果/巧克力</h3>
+                                        <ul>
+                                            <li><a href="">巧克力</a></li>
+                                            <li><a href="">口香糖</a></li>
+                                            <li><a href="">棒棒糖</a></li>
+                                            <li><a href="">喜糖</a></li>
+                                            <li><a href="">软糖</a></li>
+                                            <li><a href="">奶糖</a></li>
+                                            <li><a href="">果冻</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>饼干糕点</h3>
+                                        <ul>
+                                            <li><a href="">饼干</a></li>
+                                            <li><a href="">曲奇</a></li>
+                                            <li><a href="">糕点</a></li>
+                                            <li><a href="">蛋卷</a></li>
+                                            <li><a href="">面包</a></li>
+                                            <li><a href="">薯片/膨化</a></li>
+                                            <li><a href="">肉松饼</a></li>
+                                            <li><a href="">麻花</a></li>
+                                            <li><a href="">蛋黄派</a></li>
+                                            <li><a href="">月饼</a></li>
+                                            <li><a href="">沙琪玛</a></li>
+                                            <li><a href="">凤梨酥</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>牛奶乳品</h3>
+                                        <ul>
+                                            <li><a href="">常温奶</a></li>
+                                            <li><a href="">乳饮料</a></li>
+                                            <li><a href="">儿童奶</a></li>
+                                            <li><a href="">酸奶</a></li>
+                                            <li><a href="">豆奶</a></li>
+                                            <li><a href="">低脂奶</a></li>
+                                            <li><a href="">全脂奶</a></li>
+                                            <li><a href="">成人奶粉</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>饮料/水</h3>
+                                        <ul>
+                                            <li><a href="">水</a></li>
+                                            <li><a href="">果蔬饮料</a></li>
+                                            <li><a href="">茶饮料</a></li>
+                                            <li><a href="">碳酸饮料</a></li>
+                                            <li><a href="">功能饮料</a></li>
+                                            <li><a href="">即饮咖啡</a></li>
+                                            <li><a href="">酸梅汤</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>冲调保健</h3>
+                                        <ul>
+                                            <li><a href="">咖啡</a></li>
+                                            <li><a href="">奶茶</a></li>
+                                            <li><a href="">奶粉</a></li>
+                                            <li><a href="">芝麻糊</a></li>
+                                            <li><a href="">茶叶</a></li>
+                                            <li><a href="">功能保健</a></li>
+                                            <li><a href="">蜂产品</a></li>
+                                            <li><a href="">麦片</a></li>
+                                            <li><a href="">减肥</a></li>
+                                            <li><a href="">保健礼盒</a></li>
+                                            <li><a href="">传统滋补</a></li>
+                                            <li><a href="">补肾</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>坚果炒货</h3>
+                                        <ul>
+                                            <li><a href="">核桃</a></li>
+                                            <li><a href="">夏威夷果</a></li>
+                                            <li><a href="">碧根果</a></li>
+                                            <li><a href="">开心果</a></li>
+                                            <li><a href="">腰果</a></li>
+                                            <li><a href="">瓜子</a></li>
+                                            <li><a href="">花生</a></li>
+                                            <li><a href="">杏仁</a></li>
+                                            <li><a href="">豆类</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>肉类/豆干制品零食</h3>
+                                        <ul>
+                                            <li><a href="">牛肉</a></li>
+                                            <li><a href="">牛肉筋</a></li>
+                                            <li><a href="">猪肉</a></li>
+                                            <li><a href="">鸡鸭禽</a></li>
+                                            <li><a href="">凤爪</a></li>
+                                            <li><a href="">豆干</a></li>
+                                            <li><a href="">肉松</a></li>
+                                            <li><a href="">鱼系列</a></li>
+                                            <li><a href="">海苔</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>酒类</h3>
+                                        <ul>
+                                            <li><a href="">葡萄酒</a></li>
+                                            <li><a href="">黄酒</a></li>
+                                            <li><a href="">啤酒</a></li>
+                                            <li><a href="">白酒</a></li>
+                                            <li><a href="">洋酒</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>蜜饯果干</h3>
+                                        <ul>
+                                            <li><a href="">红枣</a></li>
+                                            <li><a href="">梅类</a></li>
+                                            <li><a href="">葡萄干</a></li>
+                                            <li><a href="">芒果干</a></li>
+                                            <li><a href="">山楂片/卷</a></li>
+                                            <li><a href="">无花果</a></li>
+                                            <li><a href="">陈皮</a></li>
+                                            <li><a href="">榴莲干</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="edge-box">
+                                    <div class="pphd">
+                                        <h3>品牌活动</h3>
+                                        <a href="">新农哥</a>
+                                        <a href="">南方大促</a>
+                                    </div>
+
+                                    <a href=""><img
+                                            src="https://img.alicdn.com/tps/i1/TB1h7hfHFXXXXbHaXXX6TwSIFXX-196-90.jpg"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="tt">
+                            <div class="white"><i class="iconfont icon-you"></i>
+                                <h3>粮油副食</h3><i class="iconfont icon-a-LeftArrow-copy1 iconfont2"></i>
+                            </div>
+                            <ul class="goods">
+                                <li><a href="">油</a></li>
+                                <li><a href="">大米</a></li>
+                                <li><a href="">调料</a></li>
+                                <li><a href="">方便面</a></li>
+                                <li><a href="">火腿肠</a></li>
+                            </ul>
+                            <div class="out-box">
+                                <ul>
+                                    <li class="out-box-li">
+                                        <h3>大米面粉</h3>
+                                        <ul>
+                                            <li><a href="">大米</a></li>
+                                            <li><a href="">面粉</a></li>
+                                            <li><a href="">粗粮</a></li>
+                                            <li><a href="">豆类</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>食用油</h3>
+                                        <ul>
+                                            <li><a href="">调和油</a></li>
+                                            <li><a href="">葵花籽油</a></li>
+                                            <li><a href="">玉米油</a></li>
+                                            <li><a href="">豆油</a></li>
+                                            <li><a href="">花生油</a></li>
+                                            <li><a href="">橄榄油</a></li>
+                                            <li><a href="">山茶油</a></li>
+                                            <li><a href="">菜油</a></li>
+                                            <li><a href="">核桃油</a></li>
+                                            <li><a href="">稻米油</a></li>
+                                            <li><a href="">其它</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>厨房调料</h3>
+                                        <ul>
+                                            <li><a href="">食用盐</a></li>
+                                            <li><a href="">酱油</a></li>
+                                            <li><a href="">醋</a></li>
+                                            <li><a href="">味精/鸡精</a></li>
+                                            <li><a href="">糖</a></li>
+                                            <li><a href="">咖喱</a></li>
+                                            <li><a href="">酱菜</a></li>
+                                            <li><a href="">调味酱</a></li>
+                                            <li><a href="">调味料</a></li>
+                                            <li><a href="">火锅底料</a></li>
+                                            <li><a href="">料酒</a></li>
+                                            <li><a href="">八角茴香</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>蘑菇干货</h3>
+                                        <ul>
+                                            <li><a href="">枣类</a></li>
+                                            <li><a href="">木耳</a></li>
+                                            <li><a href="">食用菌</a></li>
+                                            <li><a href="">银耳</a></li>
+                                            <li><a href="">干菜</a></li>
+                                            <li><a href="">淘产品</a></li>
+                                            <li><a href="">枸杞</a></li>
+                                            <li><a href="">桂圆干/龙眼</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>方便食品</h3>
+                                        <ul>
+                                            <li><a href="">方便面/粉丝</a></li>
+                                            <li><a href="">方便米饭</a></li>
+                                            <li><a href="">蛋制品</a></li>
+                                            <li><a href="">八宝粥</a></li>
+                                            <li><a href="">火腿肠</a></li>
+                                            <li><a href="">罐头食品</a></li>
+                                            <li><a href="">速食汤</a></li>
+                                            <li><a href="">挂面</a></li>
+                                            <li><a href="">米线</a></li>
+                                            <li><a href="">拉面</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>下饭菜</h3>
+                                        <ul>
+                                            <li><a href="">榨菜</a></li>
+                                            <li><a href="">萝卜干</a></li>
+                                            <li><a href="">酱瓜</a></li>
+                                            <li><a href="">橄榄菜</a></li>
+                                            <li><a href="">笋丝</a></li>
+                                            <li><a href="">酱菜</a></li>
+                                            <li><a href="">腐乳</a></li>
+                                            <li><a href="">金针菇</a></li>
+                                            <li><a href="">雪菜</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>健康杂粮</h3>
+                                        <ul>
+                                            <li><a href="">小米</a></li>
+                                            <li><a href="">黑米</a></li>
+                                            <li><a href="">薏仁米</a></li>
+                                            <li><a href="">糙米</a></li>
+                                            <li><a href="">糯米</a></li>
+                                            <li><a href="">粗粮</a></li>
+                                            <li><a href="">杂粮</a></li>
+                                            <li><a href="">豆类</a></li>
+                                            <li><a href="">绿豆</a></li>
+                                            <li><a href="">红豆</a></li>
+                                            <li><a href="">黑豆</a></li>
+                                            <li><a href="">黄豆</a></li>
+                                            <li><a href="">玉米</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>调味酱</h3>
+                                        <ul>
+                                            <li><a href="">辣椒酱</a></li>
+                                            <li><a href="">果酱/沙拉酱</a></li>
+                                            <li><a href="">鱼子酱</a></li>
+                                            <li><a href="">番茄酱</a></li>
+                                            <li><a href="">香菇酱</a></li>
+                                            <li><a href="">豆瓣酱</a></li>
+                                            <li><a href="">花生酱</a></li>
+                                            <li><a href="">肉酱</a></li>
+                                            <li><a href="">叉烧酱</a></li>
+                                            <li><a href="">拌饭酱</a></li>
+                                            <li><a href="">海鲜酱</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>方便速食</h3>
+                                        <ul>
+                                            <li><a href="">火腿肠</a></li>
+                                            <li><a href="">禽蛋类</a></li>
+                                            <li><a href="">挂面</a></li>
+                                            <li><a href="">意大利面</a></li>
+                                            <li><a href="">罐头</a></li>
+                                            <li><a href="">八宝粥</a></li>
+                                            <li><a href="">速食汤</a></li>
+                                            <li><a href="">方便米饭</a></li>
+                                            <li><a href="">粉丝</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="edge-box">
+                                    <div class="pp">
+                                        <h3>品牌</h3>
+                                        <a href="">金沙河</a>
+                                        <a href="">统一</a>
+                                        <a href="">双汇</a>
+                                        <a href="">福临门</a>
+                                        <a href="">长寿花</a>
+                                        <a href="">鲁花</a>
+                                    </div>
+                                    <div class="pphd">
+                                        <h3>品牌活动</h3>
+                                        <a href="">多力专场</a>
+                                        <a href="">海天专场</a>
+                                    </div>
+
+                                    <a href=""><img
+                                            src="https://img.alicdn.com/tfs/TB1lyxzSXXXXXaPapXXXXXXXXXX-196-90.jpg"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="tt">
+                            <div class="white"><i class="iconfont icon-weibiaoti--"></i>
+                                <h3>美容洗护</h3><i class="iconfont icon-a-LeftArrow-copy1 iconfont2"></i>
+                            </div>
+                            <ul class="goods">
+                                <li><a href="">洗发</a></li>
+                                <li><a href="">沐浴</a></li>
+                                <li><a href="">牙膏</a></li>
+                                <li><a href="">洁面</a></li>
+                                <li><a href="">卫生巾</a></li>
+                            </ul>
+                            <div class="out-box">
+                                <ul>
+                                    <li class="out-box-li">
+                                        <h3>个人洗护</h3>
+                                        <ul>
+                                            <li><a href="">洗发水</a></li>
+                                            <li><a href="">护发素</a></li>
+                                            <li><a href="">染发/造型</a></li>
+                                            <li><a href="">沐浴露</a></li>
+                                            <li><a href="">香皂</a></li>
+                                            <li><a href="">洗手液</a></li>
+                                            <li><a href="">避孕套</a></li>
+                                            <li><a href="">浴盆/足浴盐</a></li>
+                                            <li><a href="">进口洗发</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>口腔洗护</h3>
+                                        <ul>
+                                            <li><a href="">牙膏</a></li>
+                                            <li><a href="">牙刷</a></li>
+                                            <li><a href="">漱口水</a></li>
+                                            <li><a href="">牙线/牙线棒/牙粉</a></li>
+                                            <li><a href="">假牙清洁</a></li>
+                                            <li><a href="">进口口腔</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>女性护理</h3>
+                                        <ul>
+                                            <li><a href="">卫生巾</a></li>
+                                            <li><a href="">护垫</a></li>
+                                            <li><a href="">卫生棉条</a></li>
+                                            <li><a href="">成人纸尿裤</a></li>
+                                            <li><a href="">私处洗液</a></li>
+                                            <li><a href="">卫生湿巾</a></li>
+                                            <li><a href="">进口女性护理</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>美容护肤</h3>
+                                        <ul>
+                                            <li><a href="">洗面奶</a></li>
+                                            <li><a href="">爽肤水</a></li>
+                                            <li><a href="">乳液/面霜</a></li>
+                                            <li><a href="">面膜</a></li>
+                                            <li><a href="">身体乳</a></li>
+                                            <li><a href="">隔离霜</a></li>
+                                            <li><a href="">护手霜</a></li>
+                                            <li><a href="">脱毛膏</a></li>
+                                            <li><a href="">防晒</a></li>
+                                            <li><a href="">面部护理套装</a></li>
+                                            <li><a href="">进口面部护理</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>男士护理</h3>
+                                        <ul>
+                                            <li><a href="">男士控油</a></li>
+                                            <li><a href="">男士洁面</a></li>
+                                            <li><a href="">男士乳液/面霜</a></li>
+                                            <li><a href="">男士爽肤水/须后水</a></li>
+                                            <li><a href="">男士私处洗液</a></li>
+                                            <li><a href="">剃须刀</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>精致彩妆</h3>
+                                        <ul>
+                                            <li><a href="">润唇膏</a></li>
+                                            <li><a href="">BB霜隔离/妆前/打底</a></li>
+                                            <li><a href="">眼线/眼影/睫毛膏</a></li>
+                                            <li><a href="">唇彩/口红</a></li>
+                                            <li><a href="">指甲油</a></li>
+                                            <li><a href="">化妆工具</a></li>
+                                            <li><a href="">卸妆</a></li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                                <div class="edge-box">
+                                    <div class="pp">
+                                        <h3>品牌</h3>
+                                        <a href="">海飞丝</a>
+                                        <a href="">多芬</a>
+                                        <a href="">云南白药</a>
+                                        <a href="">黑人</a>
+                                        <a href="">百雀羚</a>
+                                        <a href="">玉兰油</a>
+                                    </div>
+                                    <!-- <div class="pphd">
+                                        <h3>品牌活动</h3>
+                                        <a href="">德亚牛奶</a>
+                                        <a href="">进口谷物冲饮</a>
+                                    </div> -->
+
+                                    <a href=""><img
+                                            src="https://img.alicdn.com/tfs/TB1lyxzSXXXXXaPapXXXXXXXXXX-196-90.jpg"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="tt">
+                            <div class="white"><i class="iconfont icon-jiandao"></i>
+                                <h3>家具家电</h3><i class="iconfont icon-a-LeftArrow-copy1 iconfont2"></i>
+                            </div>
+                            <ul class="goods">
+                                <li><a href="">毛巾</a></li>
+                                <li><a href="">家电</a></li>
+                                <li><a href="">玻璃杯</a></li>
+                                <li><a href="">衣架</a></li>
+                                <li><a href="">锅</a></li>
+                            </ul>
+                            <div class="out-box">
+                                <ul>
+                                    <li class="out-box-li">
+                                        <h3>衣物晾晒</h3>
+                                        <ul>
+                                            <li><a href="">衣架/裤架</a></li>
+                                            <li><a href="">夹子/绳</a></li>
+                                            <li><a href="">护洗液</a></li>
+                                            <li><a href="">晾晒架</a></li>
+                                            <li><a href="">衣物除尘/粘毛</a></li>
+                                            <li><a href="">烫衣板</a></li>
+                                            <li><a href="">晒衣篮</a></li>
+                                            <li><a href="">脏衣篮</a></li>
+                                            <li><a href="">衣叉</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>整理收纳/箱包饰品/宠物食品</h3>
+                                        <ul>
+                                            <li><a href="">挂钩/粘钩</a></li>
+                                            <li><a href="">压缩袋</a></li>
+                                            <li><a href="">收纳袋</a></li>
+                                            <li><a href="">收纳盒</a></li>
+                                            <li><a href="">整理架</a></li>
+                                            <li><a href="">防尘罩</a></li>
+                                            <li><a href="">收纳箱</a></li>
+                                            <li><a href="">纸巾盒</a></li>
+                                            <li><a href="">钱包</a></li>
+                                            <li><a href="">双肩包</a></li>
+                                            <li><a href="">宠物食品</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>卫浴用具/配件</h3>
+                                        <ul>
+                                            <li><a href="">皂盒</a></li>
+                                            <li><a href="">马桶座圈</a></li>
+                                            <li><a href="">地垫</a></li>
+                                            <li><a href="">马桶刷</a></li>
+                                            <li><a href="">浴球/浴花</a></li>
+                                            <li><a href="">干发帽/束发带</a></li>
+                                            <li><a href="">浴帽</a></li>
+                                            <li><a href="">棉签/棉棒</a></li>
+                                            <li><a href="">指甲钳/绣架刀</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>毛巾/内衣/袜子/家居服</h3>
+                                        <ul>
+                                            <li><a href="">毛巾/方巾/浴巾</a></li>
+                                            <li><a href="">床上用品</a></li>
+                                            <li><a href="">丝袜</a></li>
+                                            <li><a href="">男袜</a></li>
+                                            <li><a href="">拖鞋</a></li>
+                                            <li><a href="">内裤</a></li>
+                                            <li><a href="">家居服</a></li>
+                                            <li><a href="">皮带</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>床上用品/布艺软饰</h3>
+                                        <ul>
+                                            <li><a href="">床上套件/四件套</a></li>
+                                            <li><a href="">枕头/枕芯</a></li>
+                                            <li><a href="">床垫/靠垫/抱枕</a></li>
+                                            <li><a href="">枕套/枕巾</a></li>
+                                            <li><a href="">草席/凉席</a></li>
+                                            <li><a href="">春秋被</a></li>
+                                            <li><a href="">蚊帐/床幔</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>一次性用品</h3>
+                                        <ul>
+                                            <li><a href="">垃圾袋</a></li>
+                                            <li><a href="">保鲜袋</a></li>
+                                            <li><a href="">纸杯</a></li>
+                                            <li><a href="">塑杯</a></li>
+                                            <li><a href="">保鲜膜</a></li>
+                                            <li><a href="">烧烤纸</a></li>
+                                            <li><a href="">桌布</a></li>
+                                            <li><a href="">手套</a></li>
+                                            <li><a href="">鞋套</a></li>
+                                            <li><a href="">牙签</a></li>
+                                            <li><a href="">餐盘</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>厨具</h3>
+                                        <ul>
+                                            <li><a href="">剪刀</a></li>
+                                            <li><a href="">菜刀</a></li>
+                                            <li><a href="">蔬果刀</a></li>
+                                            <li><a href="">套刀</a></li>
+                                            <li><a href="">炒锅</a></li>
+                                            <li><a href="">奶锅</a></li>
+                                            <li><a href="">炖锅</a></li>
+                                            <li><a href="">蒸锅</a></li>
+                                            <li><a href="">汤锅</a></li>
+                                            <li><a href="">炖锅</a></li>
+                                            <li><a href="">煎锅</a></li>
+                                            <li><a href="">陶瓷餐具</a></li>
+                                            <li><a href="">砧板</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>小家电</h3>
+                                        <ul>
+                                            <li><a href="">电饭锅</a></li>
+                                            <li><a href="">电磁炉</a></li>
+                                            <li><a href="">电热水壶</a></li>
+                                            <li><a href="">电风扇</a></li>
+                                            <li><a href="">挂烫机</a></li>
+                                            <li><a href="">剃须刀（含手动）</a></li>
+                                            <li><a href="">电吹风</a></li>
+                                            <li><a href="">电池</a></li>
+                                            <li><a href="">饮水机</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="edge-box">
+                                    <div class="pp">
+                                        <h3>品牌</h3>
+                                        <a href="">水星家纺</a>
+                                        <a href="">美的</a>
+                                        <a href="">洁丽雅</a>
+                                        <a href="">振兴</a>
+                                        <a href="">爱仕达</a>
+                                        <a href="">张小泉</a>
+                                    </div>
+                                    <div class="pphd">
+                                        <h3>品牌活动</h3>
+                                        <a href="">家纺初春上新</a>
+                                        <a href=""></a>
+                                    </div>
+
+                                    <a href=""><img
+                                            src="https://img.alicdn.com/tfs/TB1lyxzSXXXXXaPapXXXXXXXXXX-196-90.jpg"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="tt">
+                            <div class="white"><i class="iconfont icon-juanzhi"></i>
+                                <h3>家庭清洁</h3><i class="iconfont icon-a-LeftArrow-copy1 iconfont2"></i>
+                            </div>
+                            <ul class="goods">
+                                <li><a href="">纸</a></li>
+                                <li><a href="">洗衣</a></li>
+                                <li><a href="">洗洁精</a></li>
+                                <li><a href="">垃圾袋</a></li>
+                                <li><a href="">洁厕</a></li>
+                            </ul>
+                            <div class="out-box">
+                                <ul>
+                                    <li class="out-box-li">
+                                        <h3>进口牛奶</h3>
+                                        <ul>
+                                            <li><a href="">进口纯牛奶</a></li>
+                                            <li><a href="">进口酸奶</a></li>
+                                            <li><a href="">进口成人奶粉</a></li>
+                                            <li><a href="">进口含乳饮料</a></li>
+                                            <li><a href="">进口有机牛奶</a></li>
+                                            <li><a href="">进口酸奶粉</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口零食</h3>
+                                        <ul>
+                                            <li><a href="">进口蜜饯果干</a></li>
+                                            <li><a href="">进口薯片/膨化</a></li>
+                                            <li><a href="">进口坚果</a></li>
+                                            <li><a href="">进口糖果</a></li>
+                                            <li><a href="">进口布丁果冻</a></li>
+                                            <li><a href="">进口海产品</a></li>
+                                            <li><a href="">进口肉干</a></li>
+                                            <li><a href="">进口巧克力</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口酒饮</h3>
+                                        <ul>
+                                            <li><a href="">进口葡萄酒</a></li>
+                                            <li><a href="">进口啤酒</a></li>
+                                            <li><a href="">进口起泡酒</a></li>
+                                            <li><a href="">进口洋酒</a></li>
+                                            <li><a href="">进口果汁</a></li>
+                                            <li><a href="">进口水</a></li>
+                                            <li><a href="">进口咖啡饮料</a></li>
+                                            <li><a href="">进口碳酸饮料</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口粮食/素食/调料</h3>
+                                        <ul>
+                                            <li><a href="">进口橄榄油</a></li>
+                                            <li><a href="">进口其它油</a></li>
+                                            <li><a href="">进口大米</a></li>
+                                            <li><a href="">进口方便面</a></li>
+                                            <li><a href="">进口意面</a></li>
+                                            <li><a href="">其它素食</a></li>
+                                            <li><a href="">进口罐头</a></li>
+                                            <li><a href="">进口调味料</a></li>
+                                            <li><a href="">进口调味酱</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口母婴用品</h3>
+                                        <ul>
+                                            <li><a href="">进口纸尿裤</a></li>
+                                            <li><a href="">进口母婴洗护</a></li>
+                                            <li><a href="">进口婴儿奶粉</a></li>
+                                            <li><a href="">进口辅食</a></li>
+                                            <li><a href="">进口婴幼儿营养品</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口冲调保健</h3>
+                                        <ul>
+                                            <li><a href="">进口咖啡</a></li>
+                                            <li><a href="">进口茶/蜂蜜</a></li>
+                                            <li><a href="">进口谷物冲饮</a></li>
+                                            <li><a href="">进口奶茶</a></li>
+                                            <li><a href="">进口茶叶</a></li>
+                                            <li><a href="">进口保健品</a></li>
+                                            <li><a href="">进口维生素</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口厨房用品</h3>
+                                        <ul>
+                                            <li><a href="">进口餐具水杯</a></li>
+                                            <li><a href="">进口厨具/锅具</a></li>
+                                            <li><a href="">进口一次性用品</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口饼干/糕点</h3>
+                                        <ul>
+                                            <li><a href="">进口饼干</a></li>
+                                            <li><a href="">进口糕点</a></li>
+                                            <li><a href="">进口面包干</a></li>
+                                            <li><a href="">进口威化</a></li>
+                                            <li><a href="">进口苏打饼干</a></li>
+                                            <li><a href="">进口曲奇</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口个人护理</h3>
+                                        <ul>
+                                            <li><a href="">进口洗发水</a></li>
+                                            <li><a href="">进口护发</a></li>
+                                            <li><a href="">进口沐浴</a></li>
+                                            <li><a href="">进口私处洗液</a></li>
+                                            <li><a href="">进口牙具</a></li>
+                                            <li><a href="">进口牙刷</a></li>
+                                            <li><a href="">进口漱口水</a></li>
+                                            <li><a href="">进口面部护理</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="edge-box">
+                                    <div class="pp">
+                                        <h3>品牌</h3>
+                                        <a href="">安家牛奶</a>
+                                        <a href="">中原G7</a>
+                                        <a href="">家乐氏</a>
+                                        <a href="">巴黎水</a>
+                                        <a href="">汤姆农场</a>
+                                        <a href="">小老板</a>
+                                    </div>
+                                    <div class="pphd">
+                                        <h3>品牌活动</h3>
+                                        <a href="">德亚牛奶</a>
+                                        <a href="">进口谷物冲饮</a>
+                                    </div>
+
+                                    <a href=""><img
+                                            src="https://img.alicdn.com/tfs/TB1lyxzSXXXXXaPapXXXXXXXXXX-196-90.jpg"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="tt">
+                            <div class="white"><i class="iconfont icon-naiping"></i>
+                                <h3>母婴用品</h3><i class="iconfont icon-a-LeftArrow-copy1 iconfont2"></i>
+                            </div>
+                            <ul class="goods">
+                                <li><a href="">纸尿裤</a></li>
+                                <li><a href="">奶粉</a></li>
+                                <li><a href="">湿巾</a></li>
+                                <li><a href="">洗护</a></li>
+                                <li><a href="">玩具</a></li>
+                            </ul>
+                            <div class="out-box">
+                                <ul>
+                                    <li class="out-box-li">
+                                        <h3>进口牛奶</h3>
+                                        <ul>
+                                            <li><a href="">进口纯牛奶</a></li>
+                                            <li><a href="">进口酸奶</a></li>
+                                            <li><a href="">进口成人奶粉</a></li>
+                                            <li><a href="">进口含乳饮料</a></li>
+                                            <li><a href="">进口有机牛奶</a></li>
+                                            <li><a href="">进口酸奶粉</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口零食</h3>
+                                        <ul>
+                                            <li><a href="">进口蜜饯果干</a></li>
+                                            <li><a href="">进口薯片/膨化</a></li>
+                                            <li><a href="">进口坚果</a></li>
+                                            <li><a href="">进口糖果</a></li>
+                                            <li><a href="">进口布丁果冻</a></li>
+                                            <li><a href="">进口海产品</a></li>
+                                            <li><a href="">进口肉干</a></li>
+                                            <li><a href="">进口巧克力</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口酒饮</h3>
+                                        <ul>
+                                            <li><a href="">进口葡萄酒</a></li>
+                                            <li><a href="">进口啤酒</a></li>
+                                            <li><a href="">进口起泡酒</a></li>
+                                            <li><a href="">进口洋酒</a></li>
+                                            <li><a href="">进口果汁</a></li>
+                                            <li><a href="">进口水</a></li>
+                                            <li><a href="">进口咖啡饮料</a></li>
+                                            <li><a href="">进口碳酸饮料</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口粮食/素食/调料</h3>
+                                        <ul>
+                                            <li><a href="">进口橄榄油</a></li>
+                                            <li><a href="">进口其它油</a></li>
+                                            <li><a href="">进口大米</a></li>
+                                            <li><a href="">进口方便面</a></li>
+                                            <li><a href="">进口意面</a></li>
+                                            <li><a href="">其它素食</a></li>
+                                            <li><a href="">进口罐头</a></li>
+                                            <li><a href="">进口调味料</a></li>
+                                            <li><a href="">进口调味酱</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口母婴用品</h3>
+                                        <ul>
+                                            <li><a href="">进口纸尿裤</a></li>
+                                            <li><a href="">进口母婴洗护</a></li>
+                                            <li><a href="">进口婴儿奶粉</a></li>
+                                            <li><a href="">进口辅食</a></li>
+                                            <li><a href="">进口婴幼儿营养品</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口冲调保健</h3>
+                                        <ul>
+                                            <li><a href="">进口咖啡</a></li>
+                                            <li><a href="">进口茶/蜂蜜</a></li>
+                                            <li><a href="">进口谷物冲饮</a></li>
+                                            <li><a href="">进口奶茶</a></li>
+                                            <li><a href="">进口茶叶</a></li>
+                                            <li><a href="">进口保健品</a></li>
+                                            <li><a href="">进口维生素</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口厨房用品</h3>
+                                        <ul>
+                                            <li><a href="">进口餐具水杯</a></li>
+                                            <li><a href="">进口厨具/锅具</a></li>
+                                            <li><a href="">进口一次性用品</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口饼干/糕点</h3>
+                                        <ul>
+                                            <li><a href="">进口饼干</a></li>
+                                            <li><a href="">进口糕点</a></li>
+                                            <li><a href="">进口面包干</a></li>
+                                            <li><a href="">进口威化</a></li>
+                                            <li><a href="">进口苏打饼干</a></li>
+                                            <li><a href="">进口曲奇</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="out-box-li">
+                                        <h3>进口个人护理</h3>
+                                        <ul>
+                                            <li><a href="">进口洗发水</a></li>
+                                            <li><a href="">进口护发</a></li>
+                                            <li><a href="">进口沐浴</a></li>
+                                            <li><a href="">进口私处洗液</a></li>
+                                            <li><a href="">进口牙具</a></li>
+                                            <li><a href="">进口牙刷</a></li>
+                                            <li><a href="">进口漱口水</a></li>
+                                            <li><a href="">进口面部护理</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="edge-box">
+                                    <div class="pp">
+                                        <h3>品牌</h3>
+                                        <a href="">安家牛奶</a>
+                                        <a href="">中原G7</a>
+                                        <a href="">家乐氏</a>
+                                        <a href="">巴黎水</a>
+                                        <a href="">汤姆农场</a>
+                                        <a href="">小老板</a>
+                                    </div>
+                                    <div class="pphd">
+                                        <h3>品牌活动</h3>
+                                        <a href="">德亚牛奶</a>
+                                        <a href="">进口谷物冲饮</a>
+                                    </div>
+
+                                    <a href=""><img
+                                            src="https://img.alicdn.com/tfs/TB1lyxzSXXXXXaPapXXXXXXXXXX-196-90.jpg"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="tt shfw">
+                            <div class="white"><i class="iconfont icon-chong"></i>
+                                <h3>生活服务</h3>
+                            </div>
+                            <ul class="goods">
+                                <li><a href="">信用卡还款</a></li>
+                                <li><a href="">转账</a></li>
+                                <li><a href="">充话费</a></li>
+                                <li><a href="">点券</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="slideshow-box">
+                    <div id="app">
+                        <div class="banner slide">
+                            <div class="banner-prev" @click="_prev"><i class="iconfont icon-a-LeftArrow-copy1-copy"></i>
+                            </div>
+                            <div class="banner-next" @click="_next"><i class="iconfont icon-a-LeftArrow-copy1"></i>
+                            </div>
+                            <ul class="banner-container banner-slide" :style="transformStyle">
+                                <li class="image-container slide-item" v-for="(item, index) in banners" :key="index">
+                                    <a><img :src="item.src" /></a>
+                                </li>
+                            </ul>
+                            <div class="banner-points">
+                                <a class="banner-point" @mouseenter="_jump(index)"
+                                    :class="{'active': index === slideIndex}" v-for="(item, index) in banners.length"
+                                    :key="index"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="picture">
+                        <div class="small">
+                            <ul>
+                                <li><a href=""><img
+                                            src="https://img.alicdn.com/tfs/TB12yAQ0hv1gK0jSZFFXXb0sXXa-249-120.jpg_Q90.jpg"
+                                            alt=""></a></li>
+                                <li><a href=""><img
+                                            src="https://img.alicdn.com/imgextra/i4/O1CN01dUKk4W1lFrr9KumHV_!!6000000004790-2-tps-250-120.png_Q90.jpg"
+                                            alt=""></a></li>
+                                <li><a href=""><img
+                                            src="https://img.alicdn.com/imgextra/i1/O1CN0167pGHJ1l8zurjAqjB_!!6000000004775-0-tps-249-120.jpg_Q90.jpg"
+                                            alt=""></a></li>
+                            </ul>
+                        </div>
+                        <div class="big">
+                            <ul>
+                                <li><a href=""><img
+                                            src="https://img.alicdn.com/tfs/TB1rZRGmAT2gK0jSZPcXXcKkpXa-250-172.jpg_Q90.jpg"
+                                            alt=""></a></li>
+                                <li><a href=""><img
+                                            src="https://img.alicdn.com/imgextra/i1/O1CN01Y409WI1jJPfC7LKoN_!!6000000004527-2-tps-250-172.png_Q90.jpg"
+                                            alt=""></a></li>
+                                <li><a href=""><img
+                                            src="https://img.alicdn.com/imgextra/i1/O1CN01SswdE41lgtE1S2yD7_!!6000000004849-0-tps-250-172.jpg_Q90.jpg"
+                                            alt=""></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="discount">
+                    <ul>
+                        <li><a href=""><img
+                                    src="https://img.alicdn.com/imgextra/i3/O1CN01Cw4mfu1RTLC47oxq1_!!6000000002112-0-tps-188-170.jpg_Q90.jpg"
+                                    alt=""></a></li>
+                        <li><a href=""><img
+                                    src="https://img.alicdn.com/imgextra/i4/O1CN01OTcVV91izieyS74OD_!!6000000004484-0-tps-188-170.jpg_Q90.jpg"
+                                    alt=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- 6、details-class -->
+        <div class="detail-class-wrap clearfix">
+            <div class="detail-class clearfix" v-for="detail in detail_box">
+                <div class="title">
+                    <h3 v-text="detail.title">进口酒饮</h3>
+                </div>
+                <div class="detail">
+                    <div class="words-class" :style="{background:detail.category_color}">
+                        <ul>
+                            <li v-for="name in detail.product_category"><a href=""><span v-text="name.name"
+                                        @mouseenter="enter()">其它食用油</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="img-class">
+                        <ul>
+                            <li v-for="sub_li in detail.li_box"><a :href="sub_li.link"><img :src="sub_li.img_src"
+                                        alt="">
+                                    <img src="" alt="" class="maiguangle">
+                                    <h3 v-text="sub_li.h3">【原装进口，淡淡果香】</h3>
+                                    <p class="goods-title" v-text="sub_li.p"></p>
+                                    <p class="price"><i class="iconfont icon-renminbi"></i><span
+                                            v-text="sub_li.price"></span></p>
+                                    <i class="iconfont icon-gouwuche1"></i>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <!-- 品牌优惠牌子 -->
+                    <div class="ppyh">
+                        <img class="ppyh-img" src="https://img.alicdn.com/tps/i4/TB14fMEIFXXXXc8XFXXzAd2FVXX-150-39.png"
+                            alt="">
+                        <a v-for="discount_link in detail.discount" :href="discount_link.a_link"><img class="yh-img"
+                                :src="discount_link.img_link" alt=""></a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+        <!-- 6、details-class -->
+        <!-- <div class="detail-class-wrap clearfix">
+            <div class="detail-class clearfix">
+                <div class="title">
+                    <h3>进口酒饮粮油</h3>
+                </div>
+                <div class="detail">
+                    <div class="words-class">
+                        <ul>
+                            <li><a href=""><span>其它食用油</span></a></li>
+                            <li><a href=""><span>调味汁/油</span></a></li>
+                            <li><a href=""><span>调味料</span></a></li>
+                            <li><a href=""><span>大米</span></a></li>
+                            <li><a href=""><span>橄榄油</span></a></li>
+                            <li><a href=""><span>调味酱</span></a></li>
+                            <li><a href=""><span>烘焙原料</span></a></li>
+                            <li><a href=""><span>谷物冲饮</span></a></li>
+                            <li><a href=""><span>咖啡</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="img-class">
+                        <ul>
+                            <li><a
+                                    href="https://detail.tmall.com/item.htm?spm=a3204.7084713.1998630277.2.XVkDVz&id=44848280079&acm=lb-zebra-27746-338432.1003.4.467318&scm=1003.4.lb-zebra-27746-338432.ITEM_44848280079_467318"><img
+                                        src="https://img.alicdn.com/imgextra/i2/TB1XkStLpXXXXXpXXXXXXXXXXXX_!!0-item_pic.jpg_160x160q90.jpg"
+                                        alt="">
+                                    <img src="" alt="" class="maiguangle">
+                                    <h3>【原装进口，淡淡果香】</h3>
+                                    <p class="goods-title">西班牙进口 歌伦初榨橄榄油1000ml/瓶</p>
+                                    <p class="price"><i class="iconfont icon-renminbi"></i><span>118</span></p>
+                                    <i class="iconfont icon-gouwuche1"></i>
+                                </a></li>
+                            <li><a href=""><img
+                                        src="https://img.alicdn.com/imgextra/i2/TB1XkStLpXXXXXpXXXXXXXXXXXX_!!0-item_pic.jpg_160x160q90.jpg"
+                                        alt="">
+                                    <img src="" alt="" class="maiguangle">
+                                    <h3>【原装进口，淡淡果香】</h3>
+                                    <p class="goods-title">西班牙进口 歌伦初榨橄榄油1000ml/瓶</p>
+                                    <p class="price"><i class="iconfont icon-renminbi"></i><span>118</span></p>
+                                    <i class="iconfont icon-gouwuche1"></i>
+                                </a></li>
+                            <li><a href=""><img
+                                        src="https://img.alicdn.com/imgextra/i2/TB1XkStLpXXXXXpXXXXXXXXXXXX_!!0-item_pic.jpg_160x160q90.jpg"
+                                        alt="">
+                                    <img src="" alt="" class="maiguangle">
+                                    <h3>【原装进口，淡淡果香】</h3>
+                                    <p class="goods-title">西班牙进口 歌伦初榨橄榄油1000ml/瓶</p>
+                                    <p class="price"><i class="iconfont icon-renminbi"></i><span>118</span></p>
+                                    <i class="iconfont icon-gouwuche1"></i>
+                                </a></li>
+                            <li><a href=""><img
+                                        src="https://img.alicdn.com/imgextra/i2/TB1XkStLpXXXXXpXXXXXXXXXXXX_!!0-item_pic.jpg_160x160q90.jpg"
+                                        alt="">
+                                    <img src="" alt="" class="maiguangle">
+                                    <h3>【原装进口，淡淡果香】</h3>
+                                    <p class="goods-title">西班牙进口 歌伦初榨橄榄油1000ml/瓶</p>
+                                    <p class="price"><i class="iconfont icon-renminbi"></i><span>118</span></p>
+                                    <i class="iconfont icon-gouwuche1"></i>
+                                </a></li>
+                            <li><a href=""><img
+                                        src="https://img.alicdn.com/imgextra/i2/TB1XkStLpXXXXXpXXXXXXXXXXXX_!!0-item_pic.jpg_160x160q90.jpg"
+                                        alt="">
+                                    <img src="" alt="" class="maiguangle">
+                                    <h3>【原装进口，淡淡果香】</h3>
+                                    <p class="goods-title">西班牙进口 歌伦初榨橄榄油1000ml/瓶</p>
+                                    <p class="price"><i class="iconfont icon-renminbi"></i><span>118</span></p>
+                                    <i class="iconfont icon-gouwuche1"></i>
+                                </a></li>
+                            <li><a href=""><img
+                                        src="https://img.alicdn.com/imgextra/i2/TB1XkStLpXXXXXpXXXXXXXXXXXX_!!0-item_pic.jpg_160x160q90.jpg"
+                                        alt="">
+                                    <img src="" alt="" class="maiguangle">
+                                    <h3>【原装进口，淡淡果香】</h3>
+                                    <p class="goods-title">西班牙进口 歌伦初榨橄榄油1000ml/瓶</p>
+                                    <p class="price"><i class="iconfont icon-renminbi"></i><span>118</span></p>
+                                    <i class="iconfont icon-gouwuche1"></i>
+                                </a></li>
+                            <li><a href=""><img
+                                        src="https://img.alicdn.com/imgextra/i2/TB1XkStLpXXXXXpXXXXXXXXXXXX_!!0-item_pic.jpg_160x160q90.jpg"
+                                        alt="">
+                                    <img src="" alt="" class="maiguangle">
+                                    <h3>【原装进口，淡淡果香】</h3>
+                                    <p class="goods-title">西班牙进口 歌伦初榨橄榄油1000ml/瓶</p>
+                                    <p class="price"><i class="iconfont icon-renminbi"></i><span>118</span></p>
+                                    <i class="iconfont icon-gouwuche1"></i>
+                                </a></li>
+                            <li><a href=""><img
+                                        src="https://img.alicdn.com/imgextra/i2/TB1XkStLpXXXXXpXXXXXXXXXXXX_!!0-item_pic.jpg_160x160q90.jpg"
+                                        alt="">
+                                    <img src="" alt="" class="maiguangle">
+                                    <h3>【原装进口，淡淡果香】</h3>
+                                    <p class="goods-title">西班牙进口 歌伦初榨橄榄油1000ml/瓶</p>
+                                    <p class="price"><i class="iconfont icon-renminbi"></i><span>118</span></p>
+                                    <i class="iconfont icon-gouwuche1"></i>
+                                </a></li>
+                        </ul>
+                    </div>
+                    
+                    品牌优惠牌子
+                    <div class="ppyh">
+                        <img class="ppyh-img" src="https://img.alicdn.com/tps/i4/TB14fMEIFXXXXc8XFXXzAd2FVXX-150-39.png"
+                            alt="">
+                        <a href=""><img class="yh-img" src="" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- 7、short-cut -->
+        <div class="short-cut-wrap clearfix">
+            <div class="short-cut">
+                <ul>
+                    <li>
+                        <h3><i class="iconfont icon-gouwudai"></i>活动</h3>
+                        <p>
+                            <a href="">新人活动</a><a href="">一站式购齐</a><a href=""></a><a href=""></a>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><i class="iconfont icon-zealui-icon-_61_bianqian"></i>价格</h3>
+                        <p>
+                            <a href="">0-10元</a><a href="">10-30元</a><a href="">30-70元</a><a href="">70元以上</a>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><i class="iconfont icon-basket"></i>日用百货</h3>
+                        <p>
+                            <a href="">纸品争霸</a><a href="">时尚买手</a><a href="">美容江湖</a><a href="">巾彩秀</a>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><i class="iconfont icon-dangao"></i>食品</h3>
+                        <p>
+                            <a href="">酒水活动</a><a href="">疯狂厨房</a><a href="">零食欢乐购</a><a href="">淘零食</a>
+                        </p>
+                    </li>
+                    <li class="last">
+                        <h3><i class="iconfont icon-feiji"></i>进口食品</h3>
+                        <p>
+                            <a href="">进口洋货</a><a href="">进口饼干</a><a href="">进口零食</a><a href="">进口牛奶</a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 8、footer -->
+        <div class="footer1-wrap clearfix">
+            <div class="footer1">
+                <div class="logo-box">
+                    <img src="https://gw.alicdn.com/tfs/TB1wr5SmUY1gK0jSZFMXXaWcVXa-336-120.png" alt="">
+                    <img src="https://img.alicdn.com/tfs/TB1dl28RXXXXXbzaFXXXXXXXXXX-136-50.png" alt="">
+                </div>
+                <div class="content-box">
+                    <h3>购物指南</h3>
+                    <ul>
+                        <li><a href="">购物流程</a></li>
+                        <li><a href="">配送时效说明</a></li>
+                        <li><a href="">配送区域及费用</a></li>
+                        <li><a href="">购买生鲜须知</a></li>
+                        <li><a href="">发票流程</a></li>
+                        <li><a href="">商品限购说明</a></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h3>售后服务</h3>
+                    <ul>
+                        <li><a href="">退货规则</a></li>
+                        <li><a href="">退货指南</a></li>
+                        <li><a href="">保质期说明</a></li>
+                        <li><a href="">联系客服</a></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h3>自助服务</h3>
+                    <ul>
+                        <li><a href="">订单物流查询</a></li>
+                        <li><a href="">我的购物车</a></li>
+                        <li><a href="">我的现金券</a></li>
+                        <li><a href="">购物常见问题</a></li>
+                        <li><a href="">建议反馈</a></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h3>商家服务</h3>
+                    <ul>
+                        <li><a href="">关于天猫超市</a></li>
+                        <li><a href="">入驻天猫超市</a></li>
+                        <li><a href="">商家常见问题</a></li>
+                        <li><a href="">淘鲜达招商</a></li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h3>随时随地逛</h3>
+                    <a href=""><img src="https://gtms03.alicdn.com/tps/i3/T1zuSAFRJbXXaSJVsE-115-115.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer2-wrap">
+            <div class="footer2">
+                <ul class="first-ul">
+                    <li><a href="">关于天猫</a></li>
+                    <li><a href="">商家服务大厅</a></li>
+                    <li><a href="">开发平台</a></li>
+                    <li><a href="">诚聘英才</a></li>
+                    <li><a href="">联系我们</a></li>
+                    <li><a href="">网站合作</a></li>
+                    <li><a href="">法律声明</a></li>
+                    <li><a href="">隐私政策</a></li>
+                    <li><a href="">知识产权</a></li>
+                    <li><a href="">廉政举报</a></li>
+                    <li><a href="">不当竞争举报</a></li>
+                </ul>
+                <ul class="second-ul">
+                    <li><a href="">阿里巴巴集团</a><span>|</span></li>
+
+                    <li><a href="">淘宝网</a><span>|</span></li>
+
+                    <li><a href="">天猫</a><span>|</span></li>
+
+                    <li><a href="">聚划算</a><span>|</span></li>
+
+                    <li><a href="">全球速卖通</a><span>|</span></li>
+
+                    <li><a href="">阿里巴巴国际交易市场</a><span>|</span></li>
+
+                    <li><a href="">1688</a><span>|</span></li>
+
+                    <li><a href="">阿里妈妈</a><span>|</span></li>
+
+                    <li><a href="">飞猪</a><span>|</span></li>
+
+                    <li><a href="">阿里云计算</a><span>|</span></li>
+
+                    <li><a href="">AliOS</a><span>|</span></li>
+
+                    <li><a href="">阿里通信</a><span>|</span></li>
+
+                    <li><a href="">万网</a><span>|</span></li>
+
+                    <li><a href="">高德</a><span>|</span></li>
+
+                    <li><a href="">UC</a><span>|</span></li>
+
+                    <li><a href="">友盟</a><span>|</span></li>
+
+                    <li><a href="">虾米</a><span>|</span></li>
+
+                    <li><a href="">钉钉</a><span>|</span></li>
+
+                    <li><a href="">支付宝</a><span>|</span></li>
+
+                    <li><a href="">阿里安全</a></li>
+                </ul>
+                <span><a href="">增值电信业务经营许可证：浙B2-20110446</a></span>
+                <span> 市场名称登记证：工商网市字3301004119号</span>
+                <span> 出版物网络交易平台服务经营备案证： 新出发浙备字第2019002号</span>
+                <br>
+                <span>互联网违法和不良信息举报电话：0571-81683755 blxxjb@alibaba-inc.com</span>
+                <span> 互联网药品信息服务资质证书编号：<a href="">浙-（经营性）-2017-0005</a></span>
+                <span><img src="https://img.alicdn.com/tps/TB1yEqRPXXXXXXPXpXXXXXXXXXX-20-20.png" alt=""><a
+                        href="">浙公网安备 33010002000120号</a></span>
+                <br>
+                <span>医疗器械网络交易服务第三方平台备案：（浙）网械平台备字[2018]第00002号</span>
+                <br>
+                <span>浙江省网络食品销售第三方平台提供者备案：浙网食A33010002</span>
+                <span><a href=""> 12318举报</a></span>
+                <span><a href=""> 浙B2-20110446-1</a></span>
+                <br>
+                <span class="time">© 2003-现在 TMALL.COM 版权所有</span>
+
+            </div>
+        </div>
+        <!-- 自己的js -->
+        <script type="text/javascript" src="./修改.js"></script>
+</body>
+
+</html>
